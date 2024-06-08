@@ -8,10 +8,18 @@ export default function Home() {
   const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
-    // fetch all data here.
+    const fetchTodos = async () => {
+      const response = await fetch('/api/todos');
+      if (response.ok) {
+        const data = await response.json();
+        setTasks(data);
+      }
+    };
+
+    fetchTodos();
   }, []);
 
-  const handleNewTask = (task) => {
+  const handleNewTask = (task) => { //used in addtask
     setTasks((prevTasks) => [...prevTasks, task]);
   }
 

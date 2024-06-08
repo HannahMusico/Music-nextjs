@@ -12,6 +12,20 @@ const AddTask = ({handleNewTask}) => {
   const handleSubmitNewTodo = async (e) => {
     e.preventDefault();
     // submit the new task to the create api ...
+    const response = await fetch('/api/todos', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ text: text }),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      setText("")
+      setModalOpen(false)
+      handleNewTask(data)
+    }
   };
 
   return (
@@ -34,7 +48,7 @@ const AddTask = ({handleNewTask}) => {
               placeholder='Type here'
               className='input input-bordered w-full'
             />
-            <button type='submit' className='btn'>
+            <button type='SUBMIT' className='btn'>
               Submit
             </button>
           </div>

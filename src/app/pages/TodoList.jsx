@@ -13,6 +13,7 @@ const TodoList = ({tasks, setTasks}) => {
   const handleDeleteTask = (id) => {
     setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
   }
+  
 
   return (
     <div className="overflow-x-auto">
